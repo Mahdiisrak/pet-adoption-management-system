@@ -1,0 +1,25 @@
+﻿-- ============================================================
+-- FINAL SALARY CLEANUP
+-- Final ER: Volunteer is NOT part of Salary N-ary relation.
+-- ============================================================
+
+ALTER TABLE SALARY
+DROP CONSTRAINT SALARY_VOLUNTEER_ID_FK;
+
+ALTER TABLE SALARY
+DROP CONSTRAINT SALARY_PERSON_CK;
+
+ALTER TABLE SALARY
+DROP COLUMN VOLUNTEER_ID;
+
+ALTER TABLE SALARY
+ADD CONSTRAINT SALARY_PERSON_CK
+CHECK (
+    EMPLOYEE_ID IS NOT NULL
+    OR SUPERVISOR_ID IS NOT NULL
+    OR DOCTOR_ID IS NOT NULL
+);
+
+COMMIT;
+
+DESC SALARY;

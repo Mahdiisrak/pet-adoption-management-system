@@ -1,0 +1,180 @@
+﻿FINAL ER APPLICATION CLEANUP AUDIT
+
+============================================================
+FILE: backend\routes\authRoutes.js
+============================================================
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\authRoutes.js:30:        su.PASSWORD_HASH,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\authRoutes.js:31:        su.USER_ROLE,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\authRoutes.js:32:        su.USER_STATUS,
+> C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\authRoutes.js:33:        p.NAME,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\authRoutes.js:34:        p.EMAIL
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\authRoutes.js:35:      FROM SYSTEM_USER su
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\authRoutes.js:36:      JOIN PERSON p
+
+============================================================
+FILE: backend\routes\personRoutes.js
+============================================================
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\personRoutes.js:27:        PHONE_NO,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\personRoutes.js:28:        EMAIL,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\personRoutes.js:29:        ADDRESS,
+> C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\personRoutes.js:30:        CONTACT_NO,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\personRoutes.js:31:        DATE_OF_BIRTH
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\personRoutes.js:32:      FROM PERSON
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\personRoutes.js:33:      ORDER BY PERSON_ID
+
+============================================================
+FILE: backend\routes\adopterRoutes.js
+============================================================
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\adopterRoutes.js:26:      `
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\adopterRoutes.js:27:      SELECT
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\adopterRoutes.js:28:        a.ADOPTER_ID,
+> C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\adopterRoutes.js:29:        p.NAME,
+> C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\adopterRoutes.js:30:        p.PHONE_NO,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\adopterRoutes.js:31:        p.EMAIL,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\adopterRoutes.js:32:        p.ADDRESS
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\adopterRoutes.js:33:      FROM ADOPTER a
+
+============================================================
+FILE: backend\routes\adoptionRoutes.js
+============================================================
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\adoptionRoutes.js:27:      SELECT
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\adoptionRoutes.js:28:        ap.ADOPTION_ID,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\adoptionRoutes.js:29:        ap.ADOPTER_ID,
+> C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\adoptionRoutes.js:30:        p.NAME AS ADOPTER_NAME,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\adoptionRoutes.js:31:        ap.EMPLOYEE_ID,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\adoptionRoutes.js:32:        ap.PET_ID,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\adoptionRoutes.js:33:        pet.PET_NAME,
+
+============================================================
+FILE: backend\routes\ownerRoutes.js
+============================================================
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\ownerRoutes.js:26:      `
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\ownerRoutes.js:27:      SELECT
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\ownerRoutes.js:28:        o.OWNER_ID,
+> C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\ownerRoutes.js:29:        p.NAME,
+> C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\ownerRoutes.js:30:        p.PHONE_NO,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\ownerRoutes.js:31:        p.EMAIL,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\ownerRoutes.js:32:        p.ADDRESS,
+> C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\ownerRoutes.js:33:        o.OCCUPATION,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\ownerRoutes.js:34:
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\ownerRoutes.js:35:        gp.GUEST_PET_ID,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\ownerRoutes.js:36:        pet.PET_NAME AS GUEST_PET_NAME,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\ownerRoutes.js:71:          PHONE_NO: row.PHONE_NO,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\ownerRoutes.js:72:          EMAIL: row.EMAIL,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\ownerRoutes.js:73:          ADDRESS: row.ADDRESS,
+> C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\ownerRoutes.js:74:          OCCUPATION: row.OCCUPATION,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\ownerRoutes.js:75:          CURRENT_GUEST_PETS: [],
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\ownerRoutes.js:76:        });
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\ownerRoutes.js:77:      }
+
+============================================================
+FILE: backend\routes\emergencyContactRoutes.js
+============================================================
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\emergencyContactRoutes.js:28:      const result = await connection.execute(
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\emergencyContactRoutes.js:29:        `
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\emergencyContactRoutes.js:30:        SELECT
+> C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\emergencyContactRoutes.js:31:          ec.CONTACT_NO,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\emergencyContactRoutes.js:32:          ec.PERSON_ID,
+> C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\emergencyContactRoutes.js:33:          p.NAME AS PERSON_NAME,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\emergencyContactRoutes.js:34:          ec.CONTACT_NAME,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\emergencyContactRoutes.js:35:          ec.RELATIONSHIP,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\emergencyContactRoutes.js:36:          ec.PHONE_NO
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\emergencyContactRoutes.js:37:        FROM EMERGENCY_CONTACT ec
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\emergencyContactRoutes.js:38:        JOIN PERSON p
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\emergencyContactRoutes.js:39:          ON ec.PERSON_ID = p.PERSON_ID
+> C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\emergencyContactRoutes.js:40:        ORDER BY ec.CONTACT_NO
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\emergencyContactRoutes.js:41:        `,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\emergencyContactRoutes.js:42:        [],
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\emergencyContactRoutes.js:43:        {
+
+============================================================
+FILE: backend\routes\staffRoutes.js
+============================================================
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\staffRoutes.js:25:      `
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\staffRoutes.js:26:      SELECT
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\staffRoutes.js:27:        p.PERSON_ID,
+> C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\staffRoutes.js:28:        p.NAME,
+> C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\staffRoutes.js:29:        p.PHONE_NO,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\staffRoutes.js:30:        p.EMAIL,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\staffRoutes.js:31:
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\staffRoutes.js:32:        CASE
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\staffRoutes.js:199:          PHONE_NO,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\staffRoutes.js:200:          EMAIL,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\staffRoutes.js:201:          ADDRESS,
+> C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\staffRoutes.js:202:          CONTACT_NO,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\staffRoutes.js:203:          DATE_OF_BIRTH
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\staffRoutes.js:204:        )
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\staffRoutes.js:205:        VALUES
+
+============================================================
+FILE: backend\routes\supervisorManagementRoutes.js
+============================================================
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\supervisorManagementRoutes.js:255:        `
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\supervisorManagementRoutes.js:256:        SELECT
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\supervisorManagementRoutes.js:257:          v.VOLUNTEER_ID,
+> C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\supervisorManagementRoutes.js:258:          p.NAME,
+> C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\supervisorManagementRoutes.js:259:          p.PHONE_NO,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\supervisorManagementRoutes.js:260:          p.EMAIL,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\supervisorManagementRoutes.js:261:          v.JOIN_DATE,
+  C:\Users\Local User\Desktop\pet-adoption-management-system\backend\routes\supervisorManagementRoutes.js:262:          v.AVAILABILITY,
+
+============================================================
+FILE: frontend\src\pages\admin\PersonsPage.jsx
+============================================================
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\admin\PersonsPage.jsx:73:                  <td className="fw-semibold">
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\admin\PersonsPage.jsx:74:                    {person.PERSON_ID}
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\admin\PersonsPage.jsx:75:                  </td>
+> C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\admin\PersonsPage.jsx:76:                  <td>{person.NAME}</td>
+> C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\admin\PersonsPage.jsx:77:                  <td>{person.PHONE_NO || "-"}</td>
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\admin\PersonsPage.jsx:78:                  <td>{person.EMAIL || "-"}</td>
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\admin\PersonsPage.jsx:79:                  <td>{person.ADDRESS || "-"}</td>
+> C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\admin\PersonsPage.jsx:80:                  <td>{person.CONTACT_NO || "-"}</td>
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\admin\PersonsPage.jsx:81:                  <td>
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\admin\PersonsPage.jsx:82:                    {person.DATE_OF_BIRTH
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\admin\PersonsPage.jsx:83:                      ? new Date(
+
+============================================================
+FILE: frontend\src\pages\employee\AdoptersPage.jsx
+============================================================
+
+============================================================
+FILE: frontend\src\pages\employee\OwnersPage.jsx
+============================================================
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\employee\OwnersPage.jsx:67:              <tr>
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\employee\OwnersPage.jsx:68:                <th>Owner ID</th>
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\employee\OwnersPage.jsx:69:                <th>Name</th>
+> C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\employee\OwnersPage.jsx:70:                <th>Occupation</th>
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\employee\OwnersPage.jsx:71:                <th>Phone</th>
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\employee\OwnersPage.jsx:72:                <th>Email</th>
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\employee\OwnersPage.jsx:73:                <th>Address</th>
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\employee\OwnersPage.jsx:88:
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\employee\OwnersPage.jsx:89:                  <td>
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\employee\OwnersPage.jsx:90:                    <span className="badge bg-primary-subtle text-primary">
+> C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\employee\OwnersPage.jsx:91:                      {owner.OCCUPATION || "-"}
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\employee\OwnersPage.jsx:92:                    </span>
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\employee\OwnersPage.jsx:93:                  </td>
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\employee\OwnersPage.jsx:94:
+
+============================================================
+FILE: frontend\src\pages\employee\EmergencyContactsPage.jsx
+============================================================
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\employee\EmergencyContactsPage.jsx:73:
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\employee\EmergencyContactsPage.jsx:74:            <tbody>
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\employee\EmergencyContactsPage.jsx:75:              {contacts.map((contact) => (
+> C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\employee\EmergencyContactsPage.jsx:76:                <tr key={contact.CONTACT_NO}>
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\employee\EmergencyContactsPage.jsx:77:                  <td className="fw-semibold">
+> C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\employee\EmergencyContactsPage.jsx:78:                    {contact.CONTACT_NO}
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\employee\EmergencyContactsPage.jsx:79:                  </td>
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\employee\EmergencyContactsPage.jsx:80:
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\employee\EmergencyContactsPage.jsx:81:                  <td>
+
+============================================================
+FILE: frontend\src\pages\doctor\MedicinesPage.jsx
+============================================================
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\doctor\MedicinesPage.jsx:65:                <th>Medicine ID</th>
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\doctor\MedicinesPage.jsx:66:                <th>Name</th>
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\doctor\MedicinesPage.jsx:67:                <th>Type</th>
+> C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\doctor\MedicinesPage.jsx:68:                <th>Unit Price</th>
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\doctor\MedicinesPage.jsx:69:                <th>Stock</th>
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\doctor\MedicinesPage.jsx:70:                <th>Expiry Date</th>
+  C:\Users\Local User\Desktop\pet-adoption-management-system\frontend\src\pages\doctor\MedicinesPage.jsx:71:              </tr>
