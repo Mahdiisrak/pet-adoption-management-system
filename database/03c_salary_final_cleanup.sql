@@ -1,25 +1,22 @@
-﻿-- ============================================================
--- FINAL SALARY CLEANUP
--- Final ER: Volunteer is NOT part of Salary N-ary relation.
--- ============================================================
+SET SERVEROUTPUT ON;
 
-ALTER TABLE SALARY
-DROP CONSTRAINT SALARY_VOLUNTEER_ID_FK;
+DECLARE
+    v_count NUMBER;
+BEGIN
+    FOR t IN (
+        SELECT table_name
+        FROM user_tables
+        WHERE table_name NOT LIKE 'BK%'
+        ORDER BY table_name
+    )
+    LOOP
+        EXECUTE IMMEDIATE
+            'SELECT COUNT(*) FROM "' || t.table_name || '"'
+            INTO v_count;
 
-ALTER TABLE SALARY
-DROP CONSTRAINT SALARY_PERSON_CK;
-
-ALTER TABLE SALARY
-DROP COLUMN VOLUNTEER_ID;
-
-ALTER TABLE SALARY
-ADD CONSTRAINT SALARY_PERSON_CK
-CHECK (
-    EMPLOYEE_ID IS NOT NULL
-    OR SUPERVISOR_ID IS NOT NULL
-    OR DOCTOR_ID IS NOT NULL
-);
-
-COMMIT;
-
-DESC SALARY;
+        DBMS_OUTPUT.PUT_LINE(
+            RPAD(t.table_name, 25) || ' : ' || v_count
+        );
+    END LOOP;
+END;
+/
