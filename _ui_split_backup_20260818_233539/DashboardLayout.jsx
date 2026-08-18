@@ -15,10 +15,8 @@ const roleMenus = {
   ],
   Supervisor: [
     { label: "Dashboard", path: "/supervisor", icon: "bi-speedometer2" },
+{ label: "Operations & Views", path: "/supervisor/operations", icon: "bi-tools" },
     { label: "Add Employee", path: "/supervisor/employees/add", icon: "bi-person-plus" },
-{ label: "Add Doctor", path: "/supervisor/add-doctor", icon: "bi-person-plus" },
-{ label: "Add Volunteer", path: "/supervisor/add-volunteer", icon: "bi-person-heart" },
-{ label: "Management & Views", path: "/supervisor/operations", icon: "bi-tools" },
     { label: "Shelters", path: "/supervisor/shelters", icon: "bi-building" },
     { label: "Assignments", path: "/supervisor/assignments", icon: "bi-diagram-3" },
     { label: "Local Pets", path: "/supervisor/local-pets", icon: "bi-heart" },

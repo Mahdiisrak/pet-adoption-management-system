@@ -26,10 +26,6 @@ import AdoptionsPage from "./pages/employee/AdoptionsPage";
 import OwnersPage from "./pages/employee/OwnersPage";
 import EmergencyContactsPage from "./pages/employee/EmergencyContactsPage";
 
-import SupervisorOperationsPage from "./pages/supervisor/SupervisorOperationsPage";
-import DoctorOperationsPage from "./pages/doctor/DoctorOperationsPage";
-import AddDoctorPage from "./pages/supervisor/AddDoctorPage";
-import AddVolunteerPage from "./pages/supervisor/AddVolunteerPage";
 function App() {
   return (
     <Routes>
@@ -47,9 +43,6 @@ function App() {
       <Route element={<ProtectedRoute allowedRoles={["SUPERVISOR"]} />}>
         <Route element={<DashboardLayout />}>
           <Route path="/supervisor" element={<SupervisorDashboard />} />
-          <Route path="/supervisor/operations" element={<SupervisorOperationsPage />} />
-          <Route path="/supervisor/add-doctor" element={<AddDoctorPage />} />
-          <Route path="/supervisor/add-volunteer" element={<AddVolunteerPage />} />
           <Route
             path="/supervisor/employees/add"
             element={<AddEmployeePage />}
@@ -62,7 +55,6 @@ function App() {
       <Route element={<ProtectedRoute allowedRoles={["DOCTOR"]} />}>
         <Route element={<DashboardLayout />}>
           <Route path="/doctor" element={<DoctorDashboard />} />
-          <Route path="/doctor/operations" element={<DoctorOperationsPage />} />
           <Route path="/doctor/medical-records" element={<MedicalRecordsPage />} />
           <Route path="/doctor/vaccinations" element={<VaccinationsPage />} />
           <Route path="/doctor/medicines" element={<MedicinesPage />} />

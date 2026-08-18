@@ -161,18 +161,7 @@ function LoginPage() {
                   </button>
                 </form>
 
-                <div className="border-top mt-4 pt-3">
-                  <p className="small text-secondary text-center mb-2">
-                    Demo accounts
-                  </p>
-
-                  <div className="small text-secondary">
-                    <div>Admin: admin / admin123</div>
-                    <div>Supervisor: supervisor / supervisor123</div>
-                    <div>Doctor: doctor / doctor123</div>
-                    <div>Employee: employee / employee123</div>
-                  </div>
-                </div>
+                
               </div>
             </div>
           </div>

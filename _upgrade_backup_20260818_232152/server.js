@@ -17,8 +17,6 @@ const emergencyContactRoutes = require("./routes/emergencyContactRoutes");
 const doctorRoutes = require("./routes/doctorRoutes");
 const supervisorManagementRoutes = require("./routes/supervisorManagementRoutes");
 
-const roleEnhancementRoutes = require("./routes/roleEnhancementRoutes");
-
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -57,8 +55,6 @@ app.get("/api/health", async (req, res) => {
     database: databaseStatus,
   });
 });
-
-app.use("/api", roleEnhancementRoutes);
 
 app.use((req, res) => {
   res.status(404).json({

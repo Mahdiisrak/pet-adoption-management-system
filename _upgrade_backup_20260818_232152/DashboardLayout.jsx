@@ -16,9 +16,6 @@ const roleMenus = {
   Supervisor: [
     { label: "Dashboard", path: "/supervisor", icon: "bi-speedometer2" },
     { label: "Add Employee", path: "/supervisor/employees/add", icon: "bi-person-plus" },
-{ label: "Add Doctor", path: "/supervisor/add-doctor", icon: "bi-person-plus" },
-{ label: "Add Volunteer", path: "/supervisor/add-volunteer", icon: "bi-person-heart" },
-{ label: "Management & Views", path: "/supervisor/operations", icon: "bi-tools" },
     { label: "Shelters", path: "/supervisor/shelters", icon: "bi-building" },
     { label: "Assignments", path: "/supervisor/assignments", icon: "bi-diagram-3" },
     { label: "Local Pets", path: "/supervisor/local-pets", icon: "bi-heart" },
@@ -28,7 +25,6 @@ const roleMenus = {
   ],
   Doctor: [
     { label: "Dashboard", path: "/doctor", icon: "bi-speedometer2" },
-{ label: "Pet & Medical Updates", path: "/doctor/operations", icon: "bi-pencil-square" },
     { label: "Medical Records", path: "/doctor/medical-records", icon: "bi-journal-medical" },
     { label: "Vaccinations", path: "/doctor/vaccinations", icon: "bi-shield-plus" },
     { label: "Medicines", path: "/doctor/medicines", icon: "bi-capsule" },
