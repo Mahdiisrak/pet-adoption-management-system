@@ -1,23 +1,8 @@
-# Dependencies
 node_modules/
-
-# Environment files
-.env
-.env.*
-
-# Build folders
 dist/
-build/
-
-# Uploaded pet images
-backend/uploads/*
-!backend/uploads/.gitkeep
-
-# Logs
+.env
 *.log
-npm-debug.log*
-
-# Editor and operating-system files
-.vscode/
+.audit/
+.npm-cache/
 .DS_Store
-Thumbs.db
+coverage/
