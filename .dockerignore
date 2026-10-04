@@ -1,0 +1,10 @@
+.git
+.env
+**/.env
+**/node_modules
+**/dist
+**/.npm-cache
+*.log
+docs
+scripts
+

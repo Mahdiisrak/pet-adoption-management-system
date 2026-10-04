@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Pet Adoption System — Docker Setup Chat</title><style>@page{size:A4;margin:18mm}body{font:10.5pt/1.45 Arial;color:#1f2937}h1{font-size:22pt;color:#0f3d5e}h2{font-size:14pt;color:#0f3d5e;border-bottom:1px solid #cbd5e1;padding-bottom:4px;margin-top:25px}.chat{margin:12px 0;padding:11px 14px;border-radius:6px;page-break-inside:avoid}.user{background:#eff6ff;border-left:4px solid #2563eb}.assistant{background:#f0fdf4;border-left:4px solid #16a34a}.label{font-weight:700;margin-bottom:5px}pre{background:#111827;color:#f8fafc;padding:10px;white-space:pre-wrap;border-radius:4px;font:9pt/1.35 Consolas}.note{background:#fffbeb;border-left:4px solid #f59e0b;padding:10px 14px}</style></head>
+<body>
+<h1>Pet Adoption System — Docker Setup Chat</h1>
+<p>A chronological record of Docker hosting setup, troubleshooting, and final commands.</p>
+<h2>1. Containerizing the project</h2>
+<div class="chat user"><div class="label">User</div>I wanna host this project to a docker. please do it</div>
+<div class="chat assistant"><div class="label">Assistant</div>Added a three-service Docker Compose stack: Oracle XE, Express API, and a production Vite/React frontend served by Nginx. Added Dockerfiles, Nginx reverse proxying for <code>/api</code>, database initialization scripts, environment template, Docker ignore files, and Docker instructions in the README.</div>
+<div class="note"><strong>Added configuration:</strong> <code>docker-compose.yml</code>, <code>backend/Dockerfile</code>, <code>frontend/Dockerfile</code>, <code>frontend/nginx.conf</code>, <code>database/docker/00_prepare_user.sql</code>, and <code>database/docker/01_initialize.sh</code>.</div>
+<h2>2. Docker command not found</h2>
+<div class="chat user"><div class="label">User</div>docker : The term 'docker' is not recognized as the name of a cmdlet, function, script file, or operable program.</div>
+<div class="chat assistant"><div class="label">Assistant</div>The Docker CLI was not installed or not available in PowerShell. Docker Desktop was installed, then WSL was checked and updated.</div>
+<div class="chat user"><div class="label">User</div><pre>wsl --install
+A distribution with the supplied name already exists.
+
+wsl --update
+The most recent version of Windows Subsystem for Linux is already installed.
+
+docker version
+Client and Server: Docker Desktop 4.89.0</pre></div>
+<div class="chat assistant"><div class="label">Assistant</div>Docker was confirmed to be correctly installed. The existing WSL distribution is normal; no further <code>wsl --install</code> command is needed.</div>
+<h2>3. Compose file not found</h2>
+<div class="chat user"><div class="label">User</div><pre>C:\Users\LENOVO&gt;docker compose up --build
+no configuration file provided: not found</pre></div>
+<div class="chat assistant"><div class="label">Assistant</div>Compose was being run from the wrong folder. It must run from the repository root, where <code>docker-compose.yml</code> is located.</div>
+<pre>cd /d E:\pet-adoption-system
+docker compose up --build</pre>
+<h2>4. Oracle port conflict</h2>
+<div class="chat user"><div class="label">User</div><pre>ports are not available: exposing port TCP 0.0.0.0:1521 ... bind: Only one usage of each socket address is normally permitted.</pre></div>
+<div class="chat assistant"><div class="label">Assistant</div>Port <code>1521</code> was already used by a local Oracle installation. The host mapping was changed from <code>1521:1521</code> to <code>1522:1521</code>. Containers still use internal Oracle port <code>1521</code>.</div>
+<h2>5. Frontend port conflict and database procedure fix</h2>
+<div class="chat user"><div class="label">User</div><pre>Container pet-adoption-system-backend-1 Healthy
+Error response from daemon: ports are not available: exposing port TCP 0.0.0.0:8080 ...</pre></div>
+<div class="chat assistant"><div class="label">Assistant</div>The API and Oracle initialization completed successfully, but <code>8080</code> was occupied. The frontend host port was changed to <code>8081</code>. Schema verification also exposed an invalid adoption procedure referencing a missing sequence; it was fixed to use <code>SYS_GUID()</code>.</div>
+<h2>6. Final startup instructions</h2>
+<div class="note">This reset removes only the project’s Docker Oracle volume. It is appropriate because it contains only freshly created demo data.</div>
+<pre>cd /d E:\pet-adoption-system
+docker compose down -v
+docker compose up --build --force-recreate</pre>
+<p>After first-time Oracle initialization finishes, open <strong>http://localhost:8081</strong>.</p>
+<p>Demo login: <code>admin</code> / <code>password</code></p>
+<p>For external database tools, use <code>localhost:1522/XEPDB1</code>, user <code>PET_ADMIN</code>, and the password configured in <code>.env</code>.</p>
+<h2>7. Database connection and adding data</h2>
+<p>The project is connected to Oracle automatically. The backend container uses <code>database:1521/XEPDB1</code>; <code>database</code> is the Docker Compose service name. The frontend calls the backend through Nginx, so all three services are connected.</p>
+<p><strong>Use SQL Developer (recommended):</strong> create a new Oracle connection with Host <code>localhost</code>, Port <code>1522</code>, Service name <code>XEPDB1</code>, Username <code>PET_ADMIN</code>, and the value of <code>APP_USER_PASSWORD</code> in the root <code>.env</code> file.</p>
+<p><strong>Use the terminal:</strong> replace <code>YOUR_APP_USER_PASSWORD</code> with the value in <code>.env</code>.</p>
+<pre>cd /d E:\pet-adoption-system
+docker compose exec database sqlplus PET_ADMIN/YOUR_APP_USER_PASSWORD@//localhost:1521/XEPDB1</pre>
+<p>Inside SQL*Plus or SQL Developer, add data with an <code>INSERT</code>, then persist it with <code>COMMIT</code>. Example:</p>
+<pre>INSERT INTO PERSON (PERSON_ID, FIRST_NAME, LAST_NAME, DATE_OF_BIRTH, GENDER, EMAIL)
+VALUES ('P021', 'Amina', 'Rahman', DATE '1998-06-15', 'FEMALE', 'amina@example.com');
+
+COMMIT;
+
+SELECT PERSON_ID, FIRST_NAME, LAST_NAME, EMAIL
+FROM PERSON
+WHERE PERSON_ID = 'P021';</pre>
+<p>Use a new, unique primary key and respect foreign-key relationships: insert parent rows (for example, <code>PERSON</code>) before dependent rows (for example, <code>PERSON_PHONE</code>). Changes stored in the Docker volume remain after <code>docker compose down</code>; they are erased only by <code>docker compose down -v</code>.</p>
+<h2>Useful Docker commands</h2>
+<pre>docker compose ps
+docker compose logs -f
+docker compose logs -f database
+docker compose down</pre>
+</body></html>

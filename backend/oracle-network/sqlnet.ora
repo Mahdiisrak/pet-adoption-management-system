@@ -1,0 +1,2 @@
+# Use database credentials for the application's local Oracle client.
+SQLNET.AUTHENTICATION_SERVICES = (NONE)

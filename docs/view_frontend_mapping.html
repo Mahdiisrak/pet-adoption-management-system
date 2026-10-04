@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>PetCare View to Frontend Mapping</title>
+  <style>
+    @page { size: A4; margin: 18mm; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #172033;
+      line-height: 1.45;
+      background: #fff;
+    }
+    h1 {
+      margin: 0 0 6px;
+      font-size: 24px;
+      color: #0f3d36;
+    }
+    h2 {
+      margin: 24px 0 8px;
+      font-size: 17px;
+      color: #176b5b;
+    }
+    p {
+      margin: 0 0 12px;
+      color: #475569;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 12px;
+    }
+    th {
+      background: #eaf5f2;
+      color: #0f3d36;
+      text-align: left;
+      padding: 9px;
+      border: 1px solid #cdded9;
+    }
+    td {
+      padding: 8px 9px;
+      border: 1px solid #d9e3e0;
+      vertical-align: top;
+    }
+    tr:nth-child(even) td { background: #f8fbfa; }
+    code {
+      font-family: Consolas, "Courier New", monospace;
+      color: #0f766e;
+      font-weight: 700;
+    }
+    .note {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-left: 4px solid #176b5b;
+      background: #f1faf7;
+    }
+    .meta {
+      font-size: 12px;
+      color: #64748b;
+      margin-bottom: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>PetCare: Database Views in the Frontend</h1>
+  <p class="meta">Frontend-only mapping for <code>database/03_views.sql</code> views.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Database View</th>
+        <th>Frontend Location</th>
+        <th>Role / Login</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>VW_PERSON_BASIC</code></td>
+        <td>Insights &amp; Reports → View → People Overview</td>
+        <td>Admin</td>
+      </tr>
+      <tr>
+        <td><code>VW_PERSON_ROLES</code></td>
+        <td>People Directory</td>
+        <td>Admin, Supervisor</td>
+      </tr>
+      <tr>
+        <td><code>VW_ROLE_DIRECTORY</code></td>
+        <td>Team Management</td>
+        <td>Supervisor</td>
+      </tr>
+      <tr>
+        <td><code>VW_PET_DETAILS</code></td>
+        <td>Pet Directory</td>
+        <td>Admin, Supervisor, Employee, Doctor, Adopter</td>
+      </tr>
+      <tr>
+        <td><code>VW_SHELTER_OVERVIEW</code></td>
+        <td>Shelter Management</td>
+        <td>Admin, Supervisor, Employee</td>
+      </tr>
+      <tr>
+        <td><code>VW_RESCUE_DETAILS</code></td>
+        <td>Rescue Operations, Rescue Intake, My Rescue Reports</td>
+        <td>Admin, Supervisor, Volunteer</td>
+      </tr>
+      <tr>
+        <td><code>VW_ADOPTION_APPLICATIONS</code></td>
+        <td>Adoption Monitoring, Adoption Review, My Assigned Adoptions, My Adoption Applications; also Insights &amp; Reports → View → Adoption Application Overview</td>
+        <td>Admin, Supervisor, Employee, Adopter</td>
+      </tr>
+      <tr>
+        <td><code>VW_MEDICAL_DETAILS</code></td>
+        <td>Health Records</td>
+        <td>Admin, Employee, Doctor</td>
+      </tr>
+      <tr>
+        <td><code>VW_FINANCE_SUMMARY</code></td>
+        <td>Financial Overview</td>
+        <td>Admin</td>
+      </tr>
+      <tr>
+        <td><code>VW_SALARY_DETAILS</code></td>
+        <td>Payroll</td>
+        <td>Admin, Supervisor</td>
+      </tr>
+      <tr>
+        <td><code>VW_DASHBOARD_STATS</code></td>
+        <td>Dashboard cards</td>
+        <td>All roles</td>
+      </tr>
+      <tr>
+        <td><code>VW_PERSON_ADDRESS_OBJECT</code></td>
+        <td>Insights &amp; Reports → Abstract Data Type → Structured Address Directory</td>
+        <td>Admin</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Where Is Insights &amp; Reports?</h2>
+  <div class="note">
+    <p><strong>Admin login:</strong> Sidebar → Developer Tools → Insights &amp; Reports.</p>
+    <p><strong>Supervisor:</strong> the backend allows management reports, but the current frontend sidebar does not show Insights &amp; Reports for Supervisor. Use the Admin account to demonstrate it from the UI.</p>
+  </div>
+
+  <h2>Quick Demo Order</h2>
+  <p>Use Admin login, then open Dashboard, People Directory, Pet Directory, Health Records, Payroll, and finally Developer Tools → Insights &amp; Reports for the report-only views.</p>
+</body>
+</html>

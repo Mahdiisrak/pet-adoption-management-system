@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>PetCare PL/SQL to Frontend Mapping</title>
+  <style>
+    @page { size: A4; margin: 18mm; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #172033;
+      line-height: 1.45;
+      background: #fff;
+    }
+    h1 {
+      margin: 0 0 6px;
+      font-size: 24px;
+      color: #0f3d36;
+    }
+    h2 {
+      margin: 24px 0 8px;
+      font-size: 17px;
+      color: #176b5b;
+    }
+    p {
+      margin: 0 0 12px;
+      color: #475569;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 11.5px;
+    }
+    th {
+      background: #eaf5f2;
+      color: #0f3d36;
+      text-align: left;
+      padding: 8px;
+      border: 1px solid #cdded9;
+    }
+    td {
+      padding: 7px 8px;
+      border: 1px solid #d9e3e0;
+      vertical-align: top;
+    }
+    tr:nth-child(even) td { background: #f8fbfa; }
+    code {
+      font-family: Consolas, "Courier New", monospace;
+      color: #0f766e;
+      font-weight: 700;
+    }
+    .note {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-left: 4px solid #176b5b;
+      background: #f1faf7;
+    }
+    .meta {
+      font-size: 12px;
+      color: #64748b;
+      margin-bottom: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>PetCare: PL/SQL in the Frontend</h1>
+  <p class="meta">Mapping for <code>database/06_plsql.sql</code> functions/procedures and their visible UI workflows.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>PL/SQL Object</th>
+        <th>Frontend Location</th>
+        <th>Role / Login</th>
+        <th>What to Click / Show</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>FN_PERSON_AGE</code></td>
+        <td>Smart PetCare Tools → Age Calculator</td>
+        <td>Admin, Doctor</td>
+        <td>Enter a person ID such as <code>P001</code> and click Calculate Age. Invalid IDs show <code>NO_DATA_FOUND</code>.</td>
+      </tr>
+      <tr>
+        <td><code>FN_AVAILABLE_PET_COUNT</code></td>
+        <td>Smart PetCare Tools → Age Calculator result</td>
+        <td>Admin, Doctor</td>
+        <td>The same Calculate Age button also returns Available Pets.</td>
+      </tr>
+      <tr>
+        <td><code>PR_CURSOR_PET_SUMMARY</code></td>
+        <td>Smart PetCare Tools → Pet Availability Summary</td>
+        <td>Admin, Doctor</td>
+        <td>Click Generate Summary to show total registered pets and available local pets.</td>
+      </tr>
+      <tr>
+        <td><code>PR_FIND_PERSON</code></td>
+        <td>Smart PetCare Tools → Person Lookup</td>
+        <td>Admin, Doctor</td>
+        <td>Enter <code>P999</code> and click Search Person to demonstrate handled <code>NO_DATA_FOUND</code>.</td>
+      </tr>
+      <tr>
+        <td><code>PR_SUBMIT_ADOPTION</code></td>
+        <td>My Adoption Applications</td>
+        <td>Adopter</td>
+        <td>Select an available pet and submit an application. The procedure creates a pending adoption request.</td>
+      </tr>
+      <tr>
+        <td><code>PR_REVIEW_ADOPTION</code></td>
+        <td>Adoption Review</td>
+        <td>Supervisor</td>
+        <td>Approve and assign an employee, or reject a pending adoption application.</td>
+      </tr>
+      <tr>
+        <td><code>PR_MARK_ADOPTED</code></td>
+        <td>My Assigned Adoptions</td>
+        <td>Employee</td>
+        <td>Finalize an approved assigned adoption. The pet becomes adopted.</td>
+      </tr>
+      <tr>
+        <td><code>PR_OWNER_DIRECTORY</code></td>
+        <td>Pet Owners</td>
+        <td>Admin, Supervisor, Employee</td>
+        <td>Search by exact owner ID, name, or phone. No match returns the handled message No records available.</td>
+      </tr>
+      <tr>
+        <td><code>PR_CREATE_PERSON</code></td>
+        <td>No direct frontend button in the current UI</td>
+        <td>Database/demo script only</td>
+        <td>Used as a PL/SQL insert example with duplicate-key exception handling. The app creates people through API transactions instead.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Where Is Smart PetCare Tools?</h2>
+  <div class="note">
+    <p><strong>Admin login:</strong> Sidebar → Developer Tools → Smart PetCare Tools.</p>
+    <p><strong>Doctor login:</strong> Sidebar → Clinical Tools → Smart PetCare Tools.</p>
+    <p><strong>Supervisor:</strong> the current frontend sidebar does not show Smart PetCare Tools for Supervisor. Use Admin or Doctor for the PL/SQL demo page.</p>
+  </div>
+
+  <h2>Best Viva Demo Order</h2>
+  <p>Start with Admin login → Smart PetCare Tools. Show Age Calculator, then Pet Availability Summary, then Person Lookup with <code>P999</code>. After that, show the adoption workflow procedures through Adopter, Supervisor, and Employee pages.</p>
+</body>
+</html>

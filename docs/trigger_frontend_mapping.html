@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>PetCare Trigger to Frontend Mapping</title>
+  <style>
+    @page { size: A4; margin: 18mm; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #172033;
+      line-height: 1.45;
+      background: #fff;
+    }
+    h1 {
+      margin: 0 0 6px;
+      font-size: 24px;
+      color: #0f3d36;
+    }
+    h2 {
+      margin: 24px 0 8px;
+      font-size: 17px;
+      color: #176b5b;
+    }
+    p {
+      margin: 0 0 12px;
+      color: #475569;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 11.2px;
+    }
+    th {
+      background: #eaf5f2;
+      color: #0f3d36;
+      text-align: left;
+      padding: 8px;
+      border: 1px solid #cdded9;
+    }
+    td {
+      padding: 7px 8px;
+      border: 1px solid #d9e3e0;
+      vertical-align: top;
+    }
+    tr:nth-child(even) td { background: #f8fbfa; }
+    code {
+      font-family: Consolas, "Courier New", monospace;
+      color: #0f766e;
+      font-weight: 700;
+    }
+    .note {
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-left: 4px solid #176b5b;
+      background: #f1faf7;
+    }
+    .meta {
+      font-size: 12px;
+      color: #64748b;
+      margin-bottom: 18px;
+    }
+  </style>
+</head>
+<body>
+  <h1>PetCare: Database Triggers in the Frontend</h1>
+  <p class="meta">Mapping for triggers defined in <code>database/01_schema.sql</code>.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Trigger</th>
+        <th>Frontend Location</th>
+        <th>Role / Login</th>
+        <th>What It Demonstrates</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>TRG_PERSON_AUTO_ID</code></td>
+        <td>User Accounts, People Directory, Create Account</td>
+        <td>Admin, Supervisor, public registration</td>
+        <td>When a person is inserted with null <code>PERSON_ID</code>, Oracle generates <code>P###</code>.</td>
+      </tr>
+      <tr>
+        <td><code>TRG_SYSTEM_USER_AUTO_ID</code></td>
+        <td>User Accounts, People Directory, Create Account</td>
+        <td>Admin, Supervisor, public registration</td>
+        <td>When a login account is inserted with null <code>USER_ID</code>, Oracle generates <code>U###</code>.</td>
+      </tr>
+      <tr>
+        <td><code>TRG_PET_AUTO_LOCAL_ID</code></td>
+        <td>Pet Directory, Rescue Intake</td>
+        <td>Admin, Employee, Supervisor</td>
+        <td>New local pets get <code>LP###</code>; guest pets get <code>GP###</code> through <code>PETCARE_ID_CONTEXT</code>.</td>
+      </tr>
+      <tr>
+        <td><code>TRG_MEDICAL_RECORD_AUTO_ID</code></td>
+        <td>Health Records</td>
+        <td>Employee, Doctor</td>
+        <td>New medical records get <code>MR###</code> automatically.</td>
+      </tr>
+      <tr>
+        <td><code>TRG_RESCUE_AUTO_ID</code></td>
+        <td>Rescue Operations</td>
+        <td>Volunteer</td>
+        <td>New rescue reports can receive generated rescue IDs such as <code>R###</code>.</td>
+      </tr>
+      <tr>
+        <td><code>TRG_ADOPTION_AUTO_ID</code></td>
+        <td>My Adoption Applications</td>
+        <td>Adopter</td>
+        <td>New adoption applications receive generated IDs such as <code>AD###</code>.</td>
+      </tr>
+      <tr>
+        <td><code>TRG_AUDIT_LOG_ID</code></td>
+        <td>System Activity</td>
+        <td>Admin</td>
+        <td>Every audit row receives a generated numeric audit ID, displayed in the UI as <code>AU###</code>.</td>
+      </tr>
+      <tr>
+        <td><code>TRG_ADOPTION_STATUS_AUDIT</code></td>
+        <td>Adoption Review, My Assigned Adoptions, System Activity</td>
+        <td>Supervisor, Employee, Admin</td>
+        <td>When adoption status changes, Oracle inserts an audit row. Admin sees it in System Activity.</td>
+      </tr>
+      <tr>
+        <td><code>TRG_ROLE_APP_NO_OWNER</code></td>
+        <td>Role Applications</td>
+        <td>All logged-in users</td>
+        <td>Prevents requesting the Owner role through role applications.</td>
+      </tr>
+      <tr>
+        <td><code>TRG_SALARY_PAYEE_ROLE</code></td>
+        <td>Payroll</td>
+        <td>Supervisor</td>
+        <td>Validates that the selected payee actually has the chosen Supervisor, Employee, or Doctor role.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2>Best Trigger Demo Order</h2>
+  <div class="note">
+    <p><strong>1.</strong> Admin → User Accounts → create a Supervisor. Show generated <code>P###</code> and <code>U###</code>.</p>
+    <p><strong>2.</strong> Employee/Admin → Pet Directory → create a pet. Show generated <code>LP###</code> or <code>GP###</code>.</p>
+    <p><strong>3.</strong> Employee/Doctor → Health Records → create a health record. Show generated <code>MR###</code>.</p>
+    <p><strong>4.</strong> Supervisor → Adoption Review → approve/reject an application, then Admin → System Activity. Show audit entry <code>AU###</code>.</p>
+  </div>
+
+  <h2>Important Note</h2>
+  <p>Browser messages such as “Please fill out this field” are frontend HTML validation, not database triggers. Database triggers run only after an insert or update reaches Oracle.</p>
+</body>
+</html>

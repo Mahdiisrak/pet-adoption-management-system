@@ -1,0 +1,19 @@
+-- Abstract Data Type demonstration using the multivalued composite Address from the ER.
+CREATE OR REPLACE TYPE ADDRESS_TYPE AS OBJECT (
+  HOUSE_NO VARCHAR2(20),
+  STREET VARCHAR2(100),
+  CITY VARCHAR2(50)
+);
+/
+
+CREATE OR REPLACE VIEW VW_PERSON_ADDRESS_OBJECT AS
+SELECT pa.PERSON_ID,
+       ADDRESS_TYPE(pa.HOUSE_NO,pa.STREET,pa.CITY) ADDRESS
+FROM PERSON_ADDRESS pa;
+
+-- ADT attribute access (same syntax demonstrated in class):
+SELECT a.PERSON_ID,
+       a.ADDRESS.HOUSE_NO AS HOUSE_NO,
+       a.ADDRESS.STREET AS STREET,
+       a.ADDRESS.CITY AS CITY
+FROM VW_PERSON_ADDRESS_OBJECT a;
