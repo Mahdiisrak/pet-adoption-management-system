@@ -143,7 +143,11 @@
 .adoption-status.pending { color: #8a5a12; background: #fff1d8; }
 .adoption-status.approved { color: #176b5b; background: #e4f5ef; }
 .adoption-status.rejected,.adoption-status.cancelled { color: #a13743; background: #fde9ec; }
+<<<<<<< HEAD
 .adoption-status.adopted { color: #4055a5; background: #e9edff; }
+=======
+.adoption-status.completed { color: #4055a5; background: #e9edff; }
+>>>>>>> d69b99fc92d668a555103a21fad44187994cefc0
 
 .demo-accounts {
   margin-top: 20px;
@@ -334,7 +338,10 @@
 .profile-list > div { padding: 13px 14px; border: 1px solid #e2ebe8; border-radius: 12px; background: #fbfdfc; }
 .profile-list strong,.profile-list small { display: block; margin-top: 4px; color: #253a35; }
 .profile-list small { color: #697873; }
+<<<<<<< HEAD
 .role-switcher { width: auto; min-width: 125px; padding: .35rem 2rem .35rem .65rem; font-size: .75rem; font-weight: 700; color: #176b5b; background-color: #e9f5f2; border-color: #cfe6df; }
+=======
+>>>>>>> d69b99fc92d668a555103a21fad44187994cefc0
 
 @media (max-width: 600px) {
   .dashboard-profile { align-items: flex-start; flex-wrap: wrap; }

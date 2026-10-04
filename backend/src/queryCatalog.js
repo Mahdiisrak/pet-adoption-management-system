@@ -32,6 +32,7 @@ const queries=[
   {key:'having-subquery',group:'Subquery',title:'Species Weight Analysis',description:'Compares each species average weight with the lightest pet.',sql:`SELECT SPECIES,AVG(WEIGHT) AVG_WEIGHT FROM PET GROUP BY SPECIES HAVING AVG(WEIGHT)>(SELECT MIN(WEIGHT) FROM PET)`},
   {key:'union',group:'Set Operation',title:'Adopter & Donor Community',description:'Combines people registered as adopters or donors.',sql:`SELECT PERSON_ID FROM ADOPTER UNION SELECT PERSON_ID FROM DONOR`},
   {key:'intersect',group:'Set Operation',title:'Donor-Owner Community',description:'Shows people who are registered as both donors and owners.',sql:`SELECT PERSON_ID FROM DONOR INTERSECT SELECT PERSON_ID FROM OWNER`},
+<<<<<<< HEAD
   {key:'cte-adoption-workload',group:'Common Table Expression',title:'Employee Adoption Case Summary',description:'Shows how many adoption cases are assigned to each employee, how many are active and how many ended in adoption.',sql:`WITH EMPLOYEE_CASES AS (
     SELECT e.PERSON_ID,
            p.FIRST_NAME||' '||p.LAST_NAME EMPLOYEE_NAME,
@@ -82,6 +83,8 @@ const queries=[
     FROM INCOME_TOTAL i
     CROSS JOIN EXPENSE_TOTAL e
     CROSS JOIN RECORDED_FINANCE f`},
+=======
+>>>>>>> d69b99fc92d668a555103a21fad44187994cefc0
   {key:'simple-view',group:'View',title:'People Overview',description:'Displays the saved basic person directory.',sql:`SELECT * FROM VW_PERSON_BASIC ORDER BY PERSON_ID`},
   {key:'complex-view',group:'View',title:'Adoption Application Overview',description:'Displays the saved multi-table adoption report.',sql:`SELECT * FROM VW_ADOPTION_APPLICATIONS ORDER BY APPLY_DATE`},
   {key:'adt-address',group:'Abstract Data Type',title:'Structured Address Directory',description:'Displays structured address information for every person.',sql:`SELECT a.PERSON_ID,a.ADDRESS.HOUSE_NO HOUSE_NO,a.ADDRESS.STREET STREET,a.ADDRESS.CITY CITY FROM VW_PERSON_ADDRESS_OBJECT a ORDER BY a.PERSON_ID`}

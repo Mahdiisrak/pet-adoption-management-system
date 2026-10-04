@@ -10,8 +10,11 @@ Oracle identifiers use uppercase names. IDs are `VARCHAR2(12)`, dates are `DATE`
 | PERSON_ADDRESS | PERSON_ID + HOUSE_NO + STREET + CITY | Multivalued composite Address |
 | PERSON_PHONE | PERSON_ID + PHONE | Multivalued Phone |
 | SYSTEM_USER | USER_ID | One account per PERSON; username, bcrypt hash, role, status |
+<<<<<<< HEAD
 | SYSTEM_USER_ROLE | USER_ID + ROLE_NAME | Approved roles available through the account role switcher |
 | ROLE_APPLICATION | ROLE_APPLICATION_ID | Pending/approved/rejected role request and role-specific reviewer |
+=======
+>>>>>>> d69b99fc92d668a555103a21fad44187994cefc0
 | EMERGENCY_NO | PERSON_ID + E_NAME | Weak entity; relation and phone |
 | DOCTOR | PERSON_ID | Salary, specialization |
 | VOLUNTEER | PERSON_ID | Skill |

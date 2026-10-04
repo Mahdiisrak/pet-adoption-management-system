@@ -1,5 +1,6 @@
 # Pet Adoption Management System
 
+<<<<<<< HEAD
 Complete DBMS Project Update-3 implementation using React, Vite, Bootstrap, Node.js, Express, `node-oracledb` and Oracle XEPDB1.
 
 ## Run the complete project with Docker
@@ -15,6 +16,9 @@ docker compose up --build
 Open `http://localhost:8081` and sign in with `admin` / `password`. The API is exposed at `http://localhost:5000`, and Oracle is available to local database tools at `localhost:1522/XEPDB1` (`PET_ADMIN` and the `APP_USER_PASSWORD` from `.env`).
 
 The first startup takes several minutes because Oracle creates and seeds the database. Database setup scripts only run while the `oracle-data` Docker volume is first created. To deliberately rebuild the database from the SQL files, stop the stack and run `docker compose down -v` before starting it again; this deletes the Docker database data.
+=======
+Complete DBMS Project Update-2 implementation using React, Vite, Bootstrap, Node.js, Express, `node-oracledb` and Oracle XEPDB1.
+>>>>>>> d69b99fc92d668a555103a21fad44187994cefc0
 
 ## 1. Create the Oracle database objects
 
@@ -63,6 +67,7 @@ Password: password
 
 - Adopters and donors create their own accounts from the login page.
 - Admin creates, activates and deactivates Supervisor accounts only.
+<<<<<<< HEAD
 - Supervisor creates each Doctor, Employee or Volunteer profile, role and login account together from People Directory.
 - Employee registers a pet owner while completing a guest-pet intake. Pet owners do not receive login accounts.
 - Every signed-in user can change their own password from My Profile.
@@ -72,6 +77,12 @@ Password: password
 - Admin acts as the higher authority for shelter responsibility: Admin creates a shelter and assigns one responsible Supervisor. A Supervisor cannot assign themselves. Available local pets inherit that shelter responsibility in Pet Directory until an adoption is approved or completed.
 
 The demonstration Volunteer account is `volunteer` / `password`. It belongs to Arif Khan (`P008`) and can also switch to the approved Donor dashboard because the ER data gives that same person both roles.
+=======
+- Supervisor creates staff profiles in People Directory, then creates Doctor, Employee or Volunteer roles and login accounts in Team Management.
+- Employee registers a pet owner while completing a guest-pet intake. Pet owners do not receive login accounts.
+- Every signed-in user can change their own password from My Profile.
+- Volunteer accounts show only their assigned rescues; donor accounts show only their own donations.
+>>>>>>> d69b99fc92d668a555103a21fad44187994cefc0
 
 ## Existing database payroll update
 
@@ -79,9 +90,12 @@ After installing the payroll and pet-owner directory update, open `database/12_p
 
 The Pet Owners page uses the existing `OWNER`, `GUEST_PET_OWNER`, `GUEST_PET`, and `PET` tables. Employee can register a new owner during guest-pet intake; Supervisor and Admin can search by owner ID, name, or phone.
 
+<<<<<<< HEAD
 For an existing database, run `database/13_multi_role_access_migration.sql` once with **F5** before starting this multi-role version.
 If that migration was already run before existing subtype roles were synchronized, run `database/14_sync_existing_person_roles.sql` once with **F5**.
 
+=======
+>>>>>>> d69b99fc92d668a555103a21fad44187994cefc0
 ## Project Update-2 coverage
 
 - 16 fully navigable frontend pages
@@ -91,6 +105,7 @@ If that migration was already run before existing subtype roles were synchronize
 - PL/SQL stored functions and procedures
 - Explicit cursor
 - Exception handling
+<<<<<<< HEAD
 - Final ER-to-relational mapping and 43-table schema
 
 See `docs/project_update_2_checklist.md` for the live presentation order.
@@ -104,3 +119,8 @@ See `docs/project_update_2_checklist.md` for the live presentation order.
 - Previous feedback retained: `ADOPTED` final state, role-aware people, multi-role dashboard switching, database exception handling, and visible pet responsibility
 
 For an existing database, run `database/19_project_update_3.sql` and `database/20_activity_history_details.sql` once as `PET_ADMIN`, then rebuild backend and frontend. See `PROJECT_UPDATE_3.md` for the presentation steps and code map.
+=======
+- Final ER-to-relational mapping and 40-table schema
+
+See `docs/project_update_2_checklist.md` for the live presentation order.
+>>>>>>> d69b99fc92d668a555103a21fad44187994cefc0

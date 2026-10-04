@@ -12,20 +12,30 @@ function displayValue(value){
   return String(value);
 }
 
+<<<<<<< HEAD
 export function DataTable({rows=[],columns,title,renderActions,emptyMessage='No records available'}){
+=======
+export function DataTable({rows=[],columns,title}){
+>>>>>>> d69b99fc92d668a555103a21fad44187994cefc0
   const visible=columns||Object.keys(rows[0]||{});
   return <div className="card data-card">
     {title&&<div className="card-header"><strong>{title}</strong></div>}
     <div className="table-responsive">
       <table className="table table-hover align-middle mb-0">
+<<<<<<< HEAD
         <thead><tr>{visible.map(column=><th key={column}>{labelOf(column)}</th>)}{renderActions&&<th>Action</th>}</tr></thead>
         <tbody>{rows.length?rows.map((row,index)=><tr key={index}>{visible.map(column=><td key={column}>{displayValue(row[column])}</td>)}{renderActions&&<td>{renderActions(row)}</td>}</tr>):<tr><td colSpan={Math.max(1,visible.length+(renderActions?1:0))} className="empty">{emptyMessage}</td></tr>}</tbody>
+=======
+        <thead><tr>{visible.map(column=><th key={column}>{labelOf(column)}</th>)}</tr></thead>
+        <tbody>{rows.length?rows.map((row,index)=><tr key={index}>{visible.map(column=><td key={column}>{displayValue(row[column])}</td>)}</tr>):<tr><td colSpan={Math.max(1,visible.length)} className="empty">No records available</td></tr>}</tbody>
+>>>>>>> d69b99fc92d668a555103a21fad44187994cefc0
       </table>
     </div>
   </div>;
 }
 
 export function FormFields({fields,form,setForm}){
+<<<<<<< HEAD
   return <div className="row g-3">{fields.filter(field=>!field.showWhen||field.showWhen(form)).map(field=>{const isRequired=typeof field.required==='function'?field.required(form):field.required;return <div className={field.wide?'col-12':'col-md-6 col-xl-4'} key={field.name}>
     <label className="form-label">{field.label}{isRequired&&<span className="required"> *</span>}</label>
     {field.type==='select'?<select className="form-select" required={isRequired} value={form[field.name]??field.options?.[0]??''} onChange={event=>setForm({...form,[field.name]:event.target.value})}>
@@ -50,17 +60,44 @@ export function CrudPage({title,description,endpoint,columns,fields,initial={},m
     }catch(e){setError(e.message);}finally{setLoading(false);}
   };
   useEffect(()=>{load('');},[endpoint]);
+=======
+  return <div className="row g-3">{fields.filter(field=>!field.showWhen||field.showWhen(form)).map(field=><div className={field.wide?'col-12':'col-md-6 col-xl-4'} key={field.name}>
+    <label className="form-label">{field.label}{field.required&&<span className="required"> *</span>}</label>
+    {field.type==='select'?<select className="form-select" required={field.required} value={form[field.name]??field.options?.[0]??''} onChange={event=>setForm({...form,[field.name]:event.target.value})}>
+      {(field.options||[]).map(option=><option key={option} value={option}>{labelOf(option)}</option>)}
+    </select>:<input className="form-control" required={field.required} type={field.type||'text'} placeholder={field.placeholder||field.label} value={form[field.name]??''} onChange={event=>setForm({...form,[field.name]:event.target.value})}/>} 
+  </div>)}</div>;
+}
+
+export function CrudPage({title,description,endpoint,columns,fields,initial={},mapPayload,method='POST',extra,readOnly=false}){
+  const [rows,setRows]=useState([]);
+  const [form,setForm]=useState(initial);
+  const [message,setMessage]=useState('');
+  const [error,setError]=useState('');
+  const [loading,setLoading]=useState(true);
+  const load=async()=>{
+    setLoading(true);setError('');
+    try{const data=await api(endpoint);setRows(Array.isArray(data)?data:[]);}catch(e){setError(e.message);}finally{setLoading(false);}
+  };
+  useEffect(()=>{load();},[endpoint]);
+>>>>>>> d69b99fc92d668a555103a21fad44187994cefc0
   const submit=async event=>{
     event.preventDefault();setMessage('');setError('');
     try{
       const payload=mapPayload?mapPayload(form):form;
+<<<<<<< HEAD
       const target=editingId?`${endpoint}/${encodeURIComponent(editingId)}`:endpoint;
       const data=await api(target,{method:editingId?'PUT':method,body:JSON.stringify(payload)});
       setMessage(data.message||'Saved successfully');setForm(initial);setEditingId('');await load(search.trim());
+=======
+      const data=await api(endpoint,{method,body:JSON.stringify(payload)});
+      setMessage(data.message||'Saved successfully');setForm(initial);await load();
+>>>>>>> d69b99fc92d668a555103a21fad44187994cefc0
     }catch(e){setError(e.message);}
   };
   return <>
     <PageHeader title={title} description={description}/>
+<<<<<<< HEAD
     {(!readOnly||editingId)&&<form className="card form-card mb-4" onSubmit={submit}>
       <FormFields fields={fields} form={form} setForm={setForm}/>
       <div className="mt-3 d-flex gap-2"><button className="btn btn-brand" type="submit">{editingId?'Update':'Save'}</button>{editingId&&<button className="btn btn-outline-secondary" type="button" onClick={()=>{setEditingId('');setForm(initial);}}>Cancel Edit</button>}</div>
@@ -70,6 +107,16 @@ export function CrudPage({title,description,endpoint,columns,fields,initial={},m
     {error&&<div className="alert alert-danger">{error}</div>}
     {extra?.({rows,load})}
     {loading?<div className="loading">Loading records…</div>:<DataTable rows={rows} columns={columns} renderActions={canEdit&&editConfig?(row)=><button className="btn btn-sm btn-outline-primary" onClick={()=>{setEditingId(row[editConfig.key]);setForm({...initial,...editConfig.toForm(row)});window.scrollTo({top:0,behavior:'smooth'});}}>Edit</button>:null}/>} 
+=======
+    {!readOnly&&<form className="card form-card mb-4" onSubmit={submit}>
+      <FormFields fields={fields} form={form} setForm={setForm}/>
+      <div className="mt-3"><button className="btn btn-brand" type="submit">Save</button></div>
+    </form>}
+    {message&&<div className="alert alert-success">{message}</div>}
+    {error&&<div className="alert alert-danger">{error}</div>}
+    {extra?.({rows,load})}
+    {loading?<div className="loading">Loading records…</div>:<DataTable rows={rows} columns={columns}/>} 
+>>>>>>> d69b99fc92d668a555103a21fad44187994cefc0
   </>;
 }
 

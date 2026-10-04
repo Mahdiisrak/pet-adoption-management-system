@@ -4,7 +4,11 @@ All Project Update-2 implementation phases are complete in the supplied project.
 
 | Area | Completed work |
 |---|---|
+<<<<<<< HEAD
 | Final schema | 40 ER-derived domain tables plus 2 access-workflow tables with PK, FK, UNIQUE, CHECK and NOT NULL constraints |
+=======
+| Final schema | 40 ER-derived tables with PK, FK, UNIQUE, CHECK and NOT NULL constraints |
+>>>>>>> d69b99fc92d668a555103a21fad44187994cefc0
 | Data | Demonstration rows for every main entity and relationship; five login accounts |
 | Views | Simple and complex views for people, roles, pets, shelters, rescues, adoption, medical, finance and salary |
 | SQL | Simple queries, functions, joins, subqueries, set operations and view queries |

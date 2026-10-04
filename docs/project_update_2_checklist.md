@@ -17,7 +17,11 @@
 
 1. Login with `adopter` / `password` and submit an application.
 2. Login with `supervisor` / `password`, approve it and assign the employee.
+<<<<<<< HEAD
 3. Login with `employee` / `password` and mark the assigned handover as adopted.
+=======
+3. Login with `employee` / `password` and complete the assigned adoption.
+>>>>>>> d69b99fc92d668a555103a21fad44187994cefc0
 4. Login with `admin` / `password` and show the same workflow in read-only monitoring.
 5. Open Database Design and explain weak entity, ISA, aggregation, Owner–Guest Pet mapping and the one-payee payroll model.
 6. Open Query Lab and run one item from each group.

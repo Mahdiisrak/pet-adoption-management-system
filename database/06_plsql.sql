@@ -9,7 +9,11 @@ EXCEPTION
   WHEN NO_DATA_FOUND THEN RETURN NULL;
 END;
 /
+<<<<<<< HEAD
 F
+=======
+
+>>>>>>> d69b99fc92d668a555103a21fad44187994cefc0
 CREATE OR REPLACE FUNCTION FN_AVAILABLE_PET_COUNT
 RETURN NUMBER
 AS
@@ -67,8 +71,12 @@ BEGIN
     RAISE_APPLICATION_ERROR(-20012,'You already have an active application for this pet');
   END IF;
 
+<<<<<<< HEAD
   -- Use a 12-character ID without relying on a separately created sequence.
   P_ADOPTION_ID:='AD'||SUBSTR(RAWTOHEX(SYS_GUID()),1,10);
+=======
+  P_ADOPTION_ID:='AD'||LPAD(TO_CHAR(ADOPTION_ID_SEQ.NEXTVAL),6,'0');
+>>>>>>> d69b99fc92d668a555103a21fad44187994cefc0
 
   INSERT INTO ADOPTION_PROCESS(
     ADOPTION_ID,ADOPTER_ID,EMPLOYEE_ID,LOCAL_PET_ID,APPLY_DATE,STATUS
@@ -158,8 +166,13 @@ EXCEPTION
 END;
 /
 
+<<<<<<< HEAD
 -- Only the assigned employee may finalize an approved adoption as ADOPTED.
 CREATE OR REPLACE PROCEDURE PR_MARK_ADOPTED(
+=======
+-- Only the assigned employee may complete an approved adoption.
+CREATE OR REPLACE PROCEDURE PR_COMPLETE_ADOPTION(
+>>>>>>> d69b99fc92d668a555103a21fad44187994cefc0
   P_ADOPTION_ID VARCHAR2,
   P_EMPLOYEE_ID VARCHAR2
 )
@@ -174,7 +187,11 @@ BEGIN
   FOR UPDATE;
 
   UPDATE ADOPTION_PROCESS
+<<<<<<< HEAD
   SET STATUS='ADOPTED'
+=======
+  SET STATUS='COMPLETED'
+>>>>>>> d69b99fc92d668a555103a21fad44187994cefc0
   WHERE ADOPTION_ID=P_ADOPTION_ID;
 
   UPDATE LOCAL_PET
@@ -184,7 +201,11 @@ BEGIN
 EXCEPTION
   WHEN NO_DATA_FOUND THEN
     ROLLBACK;
+<<<<<<< HEAD
     RAISE_APPLICATION_ERROR(-20018,'Only the assigned employee can mark an approved application as adopted');
+=======
+    RAISE_APPLICATION_ERROR(-20018,'Only the assigned employee can complete an approved application');
+>>>>>>> d69b99fc92d668a555103a21fad44187994cefc0
   WHEN OTHERS THEN
     ROLLBACK;
     RAISE;
@@ -231,6 +252,7 @@ EXCEPTION
     P_MESSAGE:='Unexpected exception handled';
 END;
 /
+<<<<<<< HEAD
 
 -- Owner directory lookup with explicit NO_DATA_FOUND handling for empty results.
 CREATE OR REPLACE PROCEDURE PR_OWNER_DIRECTORY(
@@ -310,3 +332,5 @@ EXCEPTION
       WHERE 1=0;
 END;
 /
+=======
+>>>>>>> d69b99fc92d668a555103a21fad44187994cefc0

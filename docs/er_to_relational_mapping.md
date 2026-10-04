@@ -10,8 +10,11 @@ The final ER diagram is the source of truth. Composite attributes are flattened,
 | Address | PERSON_ADDRESS | Multivalued composite attribute |
 | Phone | PERSON_PHONE | Multivalued attribute |
 | System User / Has Account | SYSTEM_USER with unique PERSON_ID FK | 1:1 relationship |
+<<<<<<< HEAD
 | Approved account roles | SYSTEM_USER_ROLE | One login can activate multiple approved overlapping roles |
 | Role request workflow | ROLE_APPLICATION | Records requester, requested role, reviewer authority and decision |
+=======
+>>>>>>> d69b99fc92d668a555103a21fad44187994cefc0
 | Emergency_No / Emergency | EMERGENCY_NO(PERSON_ID,E_NAME,...) | Weak entity; E_NAME is partial key |
 | Person ISA | DOCTOR, VOLUNTEER, SUPERVISOR, EMPLOYEE, ADOPTER, DONOR, OWNER | Table per subtype using inherited PERSON_ID |
 | Doctor Trains Doctor | DOCTOR_TRAINING | Recursive relationship with Senior/Junior roles |

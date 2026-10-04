@@ -1,0 +1,18 @@
+INSERT INTO EMERGENCY_CONTACT
+(
+    CONTACT_ID,
+    PERSON_ID,
+    CONTACT_NAME,
+    RELATIONSHIP,
+    PHONE_NO
+)
+VALUES
+(
+    'EC001',
+    'P001',
+    'Fatema Begum',
+    'Mother',
+    '01810000001'
+);
+
+COMMIT;

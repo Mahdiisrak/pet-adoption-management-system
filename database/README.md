@@ -29,6 +29,7 @@ If that migration was previously run and `PR_SUBMIT_ADOPTION` became invalid bec
 
 For an existing database created before the corrected one-payee payroll model, run `12_payroll_owner_directory_migration.sql` once with **F5**. It migrates each legacy row to one employee payment, rebuilds the salary view, and adds database-level payee-role validation. The owner directory uses the existing `OWNER` and `GUEST_PET_OWNER` tables, so it needs no new owner table.
 
+<<<<<<< HEAD
 For an existing database created before multi-role access, run `13_multi_role_access_migration.sql` once with **F5**. It creates `SYSTEM_USER_ROLE` and `ROLE_APPLICATION`, then preserves every account's current role as its first approved role.
 
 Run `14_sync_existing_person_roles.sql` after migration 13 when existing PERSON subtype memberships must appear as switchable dashboards. It is safe to rerun and never deletes a role.
@@ -49,6 +50,8 @@ Run `21_volunteer_demo_account.sql` on an existing demonstration database to add
 
 The **Employee Adoption Workload** report in PetCare Insights executes a two-stage Oracle `WITH`/CTE query from `backend/src/queryCatalog.js`. People, pet, owner, and system-activity search endpoints also send the search value to Oracle as a bind variable; the browser does not filter cached rows with JavaScript.
 
+=======
+>>>>>>> d69b99fc92d668a555103a21fad44187994cefc0
 ## Demo accounts
 
 All development accounts use password `password`.
@@ -60,4 +63,7 @@ All development accounts use password `password`.
 | doctor | DOCTOR |
 | supervisor | SUPERVISOR |
 | adopter | ADOPTER |
+<<<<<<< HEAD
 | volunteer | VOLUNTEER (also DONOR for P008) |
+=======
+>>>>>>> d69b99fc92d668a555103a21fad44187994cefc0
